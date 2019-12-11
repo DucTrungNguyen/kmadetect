@@ -1,0 +1,8 @@
+{
+
+    "BATCH_SIZE" : 32,
+    "IMG_SIZE" : 72,
+    "N_CLASSES" : 670,
+    "LR" : 0.001,
+    "N_EPOCHS" : 50
+}

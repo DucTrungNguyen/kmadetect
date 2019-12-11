@@ -1,0 +1,134 @@
+{% extends  "pages/base.html" %}
+{% block title %} Kma Detect {% endblock %}
+{% block content_home %}
+<div>
+    <div class="col-md-12" style="padding: 0px">
+        <div class="tab nav nav-tabs" style="padding : 0px">
+            <button class="tablinks" onclick="viewResuilt(event, 'summary')">Tổng quan</button>
+            <button class="tablinks" onclick="viewResuilt(event, 'details')">Chi tiết</button>
+<!--            <button class="tablinks" onclick="viewResuilt(event, 'virustotal')">Virustotal</button>-->
+        </div>
+        <!--        <h1 align="center"> {{ labelDetect }}</h1>-->
+        <div id="summary" class="tabcontent" style=display:block>
+            <h4><b>Tổng quan </b></h4>
+            <div>
+                <div class="row1">
+                    <a style="font-size: 125%; font-weight: bold;">Đây được dự đoán là ứng dụng android an toàn</a>
+                </div>
+                <div class="row1">
+                    <a>Độ tin tưởng: </a>
+                    <a>{{ probability }} </a>
+                </div>
+                <div class="row1">
+                    <a>Tên: </a>
+                    <a>{{ apk_total_analysis.Pre_static_analysis.Filename }} </a>
+                </div>
+                <div class="row1">
+                    <a>MD5: </a>
+                    <a> {{ apk_total_analysis.Pre_static_analysis.md5 }}</a>
+                </div>
+                <div class="row1">
+                    <a>SHA256: </a>
+                    <a>{{ apk_total_analysis.Pre_static_analysis.sha256}}</a>
+                </div>
+                <div class="row1">
+                    <a>SHA1: </a>
+                    <a>{{apk_total_analysis.Pre_static_analysis.sha1}}</a>
+                </div>
+                <div class="row1">
+                    <a>Loại file: </a>
+                    <a>Android</a>
+                </div>
+                <div class="row1">
+                    <a>Extension: </a>
+                    <a>.*apk</a>
+                </div>
+                <div class="row1">
+                    <a>Kích cỡ file: </a>
+                    <a></a>
+                </div>
+                <div class="row1">
+                    <a>Magic: </a>
+                    <a>Zip archive data, at least v2.0 to extract</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="details" class="tabcontent">
+            <h4><b>Chi tiết</b></h4>
+            <div>
+                <div class="" title="Đây là các quyền file andorid sử dụng trong quá trình thực thi" description="test">
+                    <h6><b>Permission</b></h6>
+                    <div class="features">
+                        {% for per in apk_total_analysis.Static_analysis.Permissions %}
+
+                        <li class="row " style=padding-left:50px>{{ per }}</li>
+
+                        {% endfor%}
+                    </div>
+                </div>
+                <div class="" title="Tên các activity trong ứng dụng android">
+                    <h6><b>Main activity</b></h6>
+                     <div>
+                        <li class="row features" style=padding-left:50px>{{ apk_total_analysis.Static_analysis.Main_activity }}</li>
+                    </div>
+                </div>
+                 <div class="" title="Tên các activity trong ứng dụng android">
+                    <h6><b>Activities</b></h6>
+                     <div>
+                        {% for activity in apk_total_analysis.Static_analysis.Activities %}
+
+                        <li class="row features" style=padding-left:50px>{{ activity }}</li>
+
+                        {% endfor%}
+                    </div>
+                </div>
+                <div class="" title="Các services trong ứng dụng android">
+                    <h6><b>Services</b></h6>
+                     <div>
+                        {% for service in apk_total_analysis.Static_analysis.Services %}
+
+                        <li class="row features" style=padding-left:50px>{{ service }}</li>
+
+                        {% endfor%}
+                    </div>
+                </div>
+                <div class="" title="Các Receivers khai báo trong ứng dụng Android để nhận thông tin.">
+                    <h6><b>Receivers</b></h6>
+                     <div>
+                        {% for receiver in apk_total_analysis.Static_analysis.Receivers %}
+                        <li class="row features" style=padding-left:50px>{{ receiver }}</li>
+                        {% endfor%}
+                    </div>
+                </div>
+                <div class="" title="Các string quan trọng.">
+                    <h6><b>Interesting String</b></h6>
+                </div>
+            </div>
+        </div>
+        <div id="virustotal" class="tabcontent">
+            <h4> </h4> Biểu đồ dự đoán </b></h4>
+        </div>
+    </div>
+
+</div>
+<script>
+    // function getVlues(type){
+    //     for ( )
+    // }
+    function viewResuilt(evt, typeview) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(typeview).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+{% endblock %}

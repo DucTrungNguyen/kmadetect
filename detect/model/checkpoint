@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/nguyentrung/NCKH_19-20/kma-det/detect/model/KMA_DtectModel.tflearn"
+all_model_checkpoint_paths: "/home/nguyentrung/NCKH_19-20/kma-det/detect/model/KMA_DtectModel.tflearn"

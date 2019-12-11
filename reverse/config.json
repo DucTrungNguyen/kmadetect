@@ -1,0 +1,11 @@
+{
+    "partData": 8,
+    "partTrained": 9,
+    "maxLabelsNum": 670,
+    "mergeCSV": 500,
+    "BATCH_SIZE": 32,
+    "IMG_SIZE": 98,
+    "N_CLASSES": 10,
+    "LR": 0.001,
+    "N_EPOCHS": 5
+}
