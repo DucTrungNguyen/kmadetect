@@ -1,2 +1,0 @@
-#kmadetect
-#By Nguyen Trung
